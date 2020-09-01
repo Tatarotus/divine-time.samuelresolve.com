@@ -16,9 +16,9 @@ export default function Home({ data }) {
   }, [divineTime])
 
   return (
-    <section className="flex flex-col items-center justify-center w-screen h-screen bg-gray-800">
+    <section className="flex items-center justify-center w-screen h-screen bg-gray-800 col">
       <div>
-        <div className="flex justify-center text-white">
+        <div className="flex flex-col justify-center text-white md:flex-row">
           <div className="flex items-center">
             <div className="c-year">
               {currentYear ? (
@@ -30,7 +30,7 @@ export default function Home({ data }) {
                 />
               ) : null}
             </div>
-            <span className="mx-4 text-5xl">:</span>
+            <span className="hidden mx-4 text-5xl md:block">:</span>
           </div>
           <div className="flex items-center">
             <div className="c-day">
@@ -43,7 +43,7 @@ export default function Home({ data }) {
                 />
               ) : null}
             </div>
-            <span className="mx-4 text-5xl">:</span>
+            <span className="hidden mx-4 text-5xl md:block">:</span>
           </div>
           <div className="flex items-center">
             <div className="c-hour">
@@ -58,7 +58,7 @@ export default function Home({ data }) {
             </div>
           </div>
         </div>
-        <div className="flex justify-around w-full mt-4 text-lg font-bold text-white">
+        <div className="justify-around hidden w-full mt-4 text-lg font-bold text-white md:flex">
           <h1>Year</h1>
           <h1>Day</h1>
           <h1>Hour</h1>

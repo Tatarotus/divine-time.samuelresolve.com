@@ -8,12 +8,6 @@ module.exports = {
   plugins: [
     "gatsby-plugin-postcss",
     {
-      resolve: "gatsby-source-rest-api",
-      options: {
-        endpoints: ["https://divine-time.vercel.app/time"]
-      }
-    },
-    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,

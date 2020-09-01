@@ -1,19 +1,25 @@
 import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import Image from "gatsby-image"
+import api from "../services/api"
 
 export default function Home({ data }) {
-  const divineTime = data.allRestApiTime.edges[0].node
-
   const [currentYear, setCurrentYear] = useState("")
   const [currentDay, setCurrentDay] = useState("")
   const [currentHour, setCurrentHour] = useState("")
 
   useEffect(() => {
-    setCurrentYear(divineTime.currentYear)
-    setCurrentHour(divineTime.currentHour)
-    setCurrentDay(divineTime.currentDay)
-  }, [divineTime])
+    ;(async function getDivineTime() {
+      try {
+        const { data } = await api.get("/time")
+        setCurrentYear(data.currentYear)
+        setCurrentHour(data.currentHour)
+        setCurrentDay(data.currentDay)
+      } catch (err) {
+        console.log(err)
+      }
+    })()
+  }, [])
 
   return (
     <section className="flex items-center justify-center w-screen h-screen bg-gray-800 col">
@@ -70,15 +76,6 @@ export default function Home({ data }) {
 
 export const query = graphql`
   {
-    allRestApiTime {
-      edges {
-        node {
-          currentDay
-          currentHour
-          currentYear
-        }
-      }
-    }
     jupiter: file(relativePath: { eq: "jupiter.png" }) {
       childImageSharp {
         fluid(maxWidth: 600) {
